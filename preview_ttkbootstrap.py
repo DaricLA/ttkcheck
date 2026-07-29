@@ -5,11 +5,9 @@ import tkinter as tk
 import ttkbootstrap as ttkb
 from ttkbootstrap.constants import *
 
-# 获取数据文件路径（兼容源码运行和 PyInstaller 打包）
+# 获取资源路径（兼容源码与 PyInstaller 打包）
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except AttributeError:
         base_path = os.path.abspath(".")
@@ -37,7 +35,7 @@ class ThemePreview:
         combo.pack(side=tk.LEFT, padx=5)
         combo.bind("<<ComboboxSelected>>", self.change_theme)
 
-        # 进度条
+        # 进度条（演示用）
         self.progress = ttkb.Progressbar(root, mode='determinate', length=400, maximum=100)
         self.progress.pack(pady=(10, 0))
         self.progress['value'] = 70
@@ -60,6 +58,7 @@ class ThemePreview:
         self.canvas.pack(side="left", fill="both", expand=True)
         self.scrollbar.pack(side="right", fill="y")
 
+        # 鼠标滚轮支持
         self.canvas.bind("<Enter>", lambda e: self.canvas.bind_all("<MouseWheel>", self._on_mousewheel))
         self.canvas.bind("<Leave>", lambda e: self.canvas.unbind_all("<MouseWheel>"))
 
@@ -75,21 +74,25 @@ class ThemePreview:
     def change_theme(self, event):
         theme = self.theme_var.get()
         self.root.style.theme_use(theme)
+        # 清空卡片区域并重建，以完全应用新主题
         for widget in self.scrollable_frame.winfo_children():
             widget.destroy()
         self.create_cards()
 
     def create_cards(self):
         style = self.root.style
+        # 两列网格布局
         self.scrollable_frame.columnconfigure(0, weight=1, uniform="col")
         self.scrollable_frame.columnconfigure(1, weight=1, uniform="col")
 
         row = 0
         col = 0
         for idx, tool in enumerate(dummy_tools):
+            # 卡片容器
             card = ttkb.LabelFrame(self.scrollable_frame, text="", padding=10, bootstyle="info")
             card.grid(row=row, column=col, padx=8, pady=8, sticky="nsew")
 
+            # 创建定制按钮样式（保留你自定义的颜色和字体）
             style_name = f"Tool{idx}.TButton"
             bg = tool.get("button_color", "#0078D7")
             fg = tool.get("text_color", "#FFFFFF")
@@ -103,9 +106,11 @@ class ThemePreview:
                             focusthickness=2,
                             focuscolor=style.colors.get('primary'))
 
+            # 按钮
             btn = ttkb.Button(card, text=tool["name"], style=style_name)
             btn.pack(fill=tk.X, pady=(5, 5))
 
+            # 描述文本
             desc = tool.get("description", "")
             if desc:
                 desc_label = ttkb.Label(card, text=desc, font=("微软雅黑", 9), foreground="gray")
