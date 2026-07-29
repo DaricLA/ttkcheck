@@ -24,6 +24,7 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --clean --name "ThemePreview" `
             --add-data "dummy_tools.json;." `
+            --collect-all ttkbootstrap `
             preview_ttkbootstrap.py
 
       - name: Upload artifact
