@@ -1,10 +1,22 @@
 import json
+import os
+import sys
 import tkinter as tk
 import ttkbootstrap as ttkb
 from ttkbootstrap.constants import *
 
-# 读取 dummy_tools.json（用于演示）
-with open("dummy_tools.json", "r", encoding="utf-8") as f:
+# 获取数据文件路径（兼容源码运行和 PyInstaller 打包）
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+# 读取演示工具配置
+with open(resource_path("dummy_tools.json"), "r", encoding="utf-8") as f:
     dummy_tools = json.load(f)
 
 themes = sorted(ttkb.Style().theme_names())
