@@ -1,0 +1,50 @@
+[
+    {
+        "name": "VSA_MBO_PBO 一鍵產生器",
+        "exe": "demo.exe",
+        "description": "自動更新 Excel 報告",
+        "button_color": "#0078D7",
+        "text_color": "#FFFFFF",
+        "font_size": 12
+    },
+    {
+        "name": "Umi-OCR 文字識別",
+        "exe": "demo.exe",
+        "description": "光學字元識別工具",
+        "button_color": "#27AE60",
+        "text_color": "#FFFFFF",
+        "font_size": 12
+    },
+    {
+        "name": "未來工具 C",
+        "exe": "demo.exe",
+        "description": "範例工具",
+        "button_color": "#E74C3C",
+        "text_color": "#FFFFFF",
+        "font_size": 12
+    },
+    {
+        "name": "未來工具 D",
+        "exe": "demo.exe",
+        "description": "範例工具",
+        "button_color": "#8E44AD",
+        "text_color": "#FFFFFF",
+        "font_size": 12
+    },
+    {
+        "name": "未來工具 E",
+        "exe": "demo.exe",
+        "description": "深色文字範例",
+        "button_color": "#F39C12",
+        "text_color": "#000000",
+        "font_size": 12
+    },
+    {
+        "name": "未來工具 F",
+        "exe": "demo.exe",
+        "description": "範例工具",
+        "button_color": "#1ABC9C",
+        "text_color": "#FFFFFF",
+        "font_size": 12
+    }
+]
